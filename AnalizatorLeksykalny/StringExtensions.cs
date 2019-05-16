@@ -17,14 +17,10 @@ namespace AnalizatorLeksykalny
                 index = target.IndexOf(value, index + 1);
 
                 if (index < 0)
-                {
                     return -1;
-                }
 
                 if (++found == n)
-                {
                     return index;
-                }
             }
         }
     }

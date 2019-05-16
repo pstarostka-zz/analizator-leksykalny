@@ -10,7 +10,6 @@ namespace AnalizatorLeksykalny
         public MatchType MatchType { get; set; }
         public int Index { get; set; }
 
-
         public override string ToString()
         {
             switch (MatchType)
