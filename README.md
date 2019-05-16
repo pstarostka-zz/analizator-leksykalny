@@ -1,8 +1,8 @@
 # analizator-leksykalny
 
-## wymagania
+## Wymagania
 * .Net Core 2.1+
 
-## uruchomienie
+## Uruchomienie
 * Visual Studio (w trybie debuggowania)
 * komenda `dotnet run --project AnalizatorLeksykalny/AnalizatorLeksykalny.csproj`
