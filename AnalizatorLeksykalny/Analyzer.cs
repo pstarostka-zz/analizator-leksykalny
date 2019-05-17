@@ -8,7 +8,7 @@ namespace AnalizatorLeksykalny
     public class Analyzer
     {
         private readonly string IntegerRegex = @"(?<=^\.|\s|^|[-+\/*()\\])\d+(?=[a-zA-Z\/\\()]|$|\s|[-+\/*]|\.[a-zA-Z\s]+|(\.\.)+)";
-        private readonly string FloatRegex = @"([0-9]+\.[0-9]+)";
+        private readonly string FloatRegex = @"(?<![a-zA-Z0-9])([0-9]+\.[0-9]+)";
         private readonly string IdentifierRegex = @"([a-zA-Z]+[a-zA-Z0-9]+|[a-zA-Z])";
         private readonly string OperatorRegex = @"([\+\-\*\/])";
         private readonly string BracketRegex = @"([\(\)\{\}\[\]\<\>])";
