@@ -87,6 +87,8 @@ namespace AnalizatorLeksykalny
                         case MatchType.Bracket:
                             if (nextType == MatchType.Operator && matches[i].Value == "(")
                                 return false;
+                            if (nextType == MatchType.Bracket && matches[i].Value == ")" && matches[i + 1].Value == "(")
+                                return false;
                             break;
                         default:
                             break;
