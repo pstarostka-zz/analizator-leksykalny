@@ -11,7 +11,7 @@ namespace AnalizatorLeksykalny
         private readonly string FloatRegex = @"(?<![a-zA-Z0-9])([0-9]+\.[0-9]+)";
         private readonly string IdentifierRegex = @"([a-zA-Z]+[a-zA-Z0-9]+|[a-zA-Z])";
         private readonly string OperatorRegex = @"([\+\-\*\/])";
-        private readonly string BracketRegex = @"([\(\)\{\}\[\]\<\>])";
+        private readonly string BracketRegex = @"([\(\)])";
 
         public void AnalyzeLexically(string text)
         {
@@ -80,7 +80,7 @@ namespace AnalizatorLeksykalny
 
         private void PrintWithExceptions(string line, List<MatchObject> allMatches)
         {
-            if (string.IsNullOrEmpty(line))
+            if (string.IsNullOrWhiteSpace(line))
             {
                 Console.WriteLine("Line is empty");
                 return;
@@ -115,7 +115,17 @@ namespace AnalizatorLeksykalny
             }
             sorted.AddRange(tmp);
             sorted = sorted.OrderBy(x => x.Index).ToList();
-            sorted.ForEach(Console.WriteLine);
+
+            var errorCount = sorted.Where(x=>x.MatchType == MatchType.NotFound).Count();
+
+            if (errorCount > 0)
+            {
+                Console.WriteLine("Line has errors");
+            }
+            else
+            {
+                SyntacticAnalyzer.AnalyzeSyntacticaly(sorted);
+            }
         }
     }
 }
