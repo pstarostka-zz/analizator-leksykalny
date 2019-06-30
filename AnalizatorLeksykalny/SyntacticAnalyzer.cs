@@ -13,11 +13,24 @@ namespace AnalizatorLeksykalny
             var evenAmountOfBrackets = EvenAmountOfBrackets(matchesFromLine);
 
             if (evenAmountOfBrackets == false)
+            {
+                Console.WriteLine(false);
                 return false;
+            }
 
             Console.WriteLine(IsNextTokenValid(matchesFromLine));
 
             return false;
+        }
+
+        private static bool IsEmptyBracket(List<MatchObject> matches)
+        {
+            var bracketsCount = matches.Where(x => x.MatchType == MatchType.Bracket);
+            var nonBracketsCount = matches.Where(x => x.MatchType != MatchType.Bracket);
+
+
+
+            return bracketsCount.Count() > 0 && nonBracketsCount.Count() == 0;
         }
 
         private static bool? EvenAmountOfBrackets(List<MatchObject> matches)
@@ -37,7 +50,6 @@ namespace AnalizatorLeksykalny
         private static bool IsNextTokenValid(List<MatchObject> matches)
         {
             MatchType? nextType = MatchType.NotFound;
-            //
 
             for (int i = 0; i < matches.Count(); i++)
             {
@@ -81,19 +93,11 @@ namespace AnalizatorLeksykalny
                     }
                 }
             }
-
+            if (IsEmptyBracket(matches))
+                return false;
             return true;
+
+
         }
-        // 2 + x
-        // x + x 
-        // x + )
-
-        // prev
-        // null int operator id
-
-        //next
-        // operator id null
-
-
     }
 }

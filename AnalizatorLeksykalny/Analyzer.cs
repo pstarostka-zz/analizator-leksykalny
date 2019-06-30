@@ -27,12 +27,12 @@ namespace AnalizatorLeksykalny
 
                 var integerMatches = Regex.Matches(line, IntegerRegex);
                 matchObjects.AddRange(integerMatches.Select(x =>
-                new MatchObject
-                {
-                    MatchType = MatchType.Integer,
-                    Value = x.Value,
-                    Index = x.Index
-                }));
+                    new MatchObject
+                    {
+                        MatchType = MatchType.Integer,
+                        Value = x.Value,
+                        Index = x.Index
+                    }));
 
 
                 var floatMatches = Regex.Matches(line, FloatRegex);
@@ -116,7 +116,7 @@ namespace AnalizatorLeksykalny
             sorted.AddRange(tmp);
             sorted = sorted.OrderBy(x => x.Index).ToList();
 
-            var errorCount = sorted.Where(x=>x.MatchType == MatchType.NotFound).Count();
+            var errorCount = sorted.Where(x => x.MatchType == MatchType.NotFound).Count();
 
             if (errorCount > 0)
             {
